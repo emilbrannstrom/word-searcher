@@ -1,18 +1,3 @@
-#provide underlying operative system functionality
-#to enable path to directory
-#(prova utan denna och se vad som haender)
-#from os import path
-
-#import regular expressions module
-import re
-
-#pathToFile = path.relpath('/textfiles/romeo.txt')
-#open all files in a directory containing textfiles
-#(borjar med en fil)
-
-#//////// add nordic character encoding /////////////
-#//////// currently textfiles are in current path
-# fix so that they are in a subdirectory /////////////
 #import OS module to enable underlying OS capabilities
 import os
 
@@ -36,15 +21,12 @@ print('Your keywords: ' + str(keywords))
 for file in allFiles:
     path = (directory + '/' + file)
     if file.endswith('.txt'):
-        with open (path, 'rt') as openFile: #rt = Read Text and close file
+        with open (path, 'rt') as openFile: #rt = Read Text and close file  
             for line in openFile:
                 for word in line.split():
                     if word in keywords:
                         matchingWords.append(word)
             print('Matches found in ' + file + ' :' + str(matchingWords))
-            dictionary = {file : len(matchingWords)}
-            print dictionary
-                    
 
 numberOfKeywords = len(keywords)
 
