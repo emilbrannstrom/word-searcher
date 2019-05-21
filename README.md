@@ -1,10 +1,6 @@
 # word-searcher
 Terminal based search engine for finding words contained text files. Written in Python.
 
-## Getting Started
-
-These instructions will get you a copy of the word-searcher script up and running on your local machine for testing purposes.
-
 ### Prerequisites
 
 Python 3.0
@@ -13,7 +9,7 @@ Python 3.0
 
 Download git repo.
 
-Then, on line 5, modify the path to your local directory containing the textfiles to scan.
+Open word-searcher.py in an IDE. Then, on line 5, modify the path to your local directory containing the textfiles to scan.
 ```
 directory = '/path/to/your/directory/word-searcher/textfiles'
 ```
