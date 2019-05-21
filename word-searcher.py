@@ -1,7 +1,7 @@
 import os #OS module enables underlying OS capabilities
 from heapq import nlargest
 
-#directory to scan for files
+#path to directory to scan for files
 directory = '/Users/emilbrannstrom/Documents/dev/word-searcher/textfiles'
 
 #list all files in directory
@@ -35,6 +35,8 @@ matchRatio = float(len(matchingWords))/len(keywords)*100
 
 print "Matches found: ", len(matchingWords)
 print "Match percentage: ", matchRatio, "%"
+
+"""TODO: Fix match ratio for each textfile in the top 10 list."""
 
 print'Matches found in: ', file
 
