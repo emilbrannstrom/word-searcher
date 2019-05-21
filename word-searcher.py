@@ -16,16 +16,16 @@ fileDictionary = {}
 #list to store matching words in
 matchingWords = [] 
 
-#iterate through all textfiles in directory
+#iterate through all textfiles in directory and search for keyword matches
 for file in allFiles:
     path = (directory + '/' + file)
     if file.endswith('.txt'):
         with open (path, 'rt') as openFile: #rt = Read Text and close file  
             for line in openFile:
                 for word in line.split():
-                    if word in keywords: #add only unique matches to list
+                    if word in keywords: #add any matching words to list
                         matchingWords.append(word)
-                        fileDictionary[file] = len(matchingWords)
+                        fileDictionary[file] = len(matchingWords) #add number of matches to corresponding file in dictionary
 
 #remove duplicates from dictionary
 matchingWords = list(dict.fromkeys(matchingWords))
