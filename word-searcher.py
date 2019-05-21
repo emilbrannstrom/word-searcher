@@ -1,27 +1,20 @@
 import os #OS module enables underlying OS capabilities
-import heapq #Heapq module enables heap data structure to find n largest values in a dataset
+from heapq import nlargest
 
+#directory to scan for files
 directory = '/Users/emilbrannstrom/Documents/dev/word-searcher/textfiles'
-
-#create dictionary with textfiles as key and their associated keyword count as value
-fileDict = {} 
-
-matchingWords = []
-
-numberOfMatches = len(matchingWords)
 
 #list all files in directory
 allFiles = os.listdir('textfiles/')
 
-print('Text files found in directory: ' + str(allFiles))
-
 #prompt for keywords and split them
 keywords = raw_input('Enter words to search for: ').split()
-if len(keywords) == 0:
-    print('No keyword given')
-print('Your keywords: ' + str(keywords))
 
+#create empty dictionary for pairing textfiles with associated keyword count
+fileDictionary = {} 
 
+#list to store matching words in
+matchingWords = [] 
 
 #iterate through all textfiles in directory
 for file in allFiles:
@@ -30,23 +23,23 @@ for file in allFiles:
         with open (path, 'rt') as openFile: #rt = Read Text and close file  
             for line in openFile:
                 for word in line.split():
-                    if word in keywords:
+                    if word in keywords: #add only unique matches to list
                         matchingWords.append(word)
-                        fileDict[file] = len(matchingWords)
-            print('Matches found in ' + file + ' :' + str(matchingWords))
+                        fileDictionary[file] = len(matchingWords)
 
-print fileDict
-topTen = heapq.nlargest(10, fileDict, len(matchingWords()))
-print("Top 10 files matching your keywords:") 
-print topTen
-"""
-numberOfKeywords = len(keywords)
+#remove duplicates from dictionary
+matchingWords = list(dict.fromkeys(matchingWords))
 
-matchPercentage = numberOfMatches/float(numberOfKeywords)
+#get matching words ratio
+matchRatio = float(len(matchingWords))/len(keywords)*100
 
-print('Number of matches: ' + str(numberOfMatches))
-if len(matchingWords) < 1:
-    print('Matches found: none')
-else: 
-    print('Matches found: ' + str(matchingWords))
-print('Percentage of your words that were found: ' + str(matchPercentage*100))"""
+print "Matches found: ", len(matchingWords)
+print "Match percentage: ", matchRatio, "%"
+
+print'Matches found in: ', file
+
+#list top 10 files where keywords match
+top10 = nlargest(10, fileDictionary, key=fileDictionary.get)
+if len(matchingWords) > 0:
+    print("Top 10 files matching your keywords:")
+    print top10
