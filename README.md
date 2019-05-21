@@ -12,7 +12,8 @@ Python 3.0
 ### The setup
 
 Download git repo.
-On line 5, modify path to your local directory containing the textfiles to scan.
+
+Then, on line 5, modify the path to your local directory containing the textfiles to scan.
 ```
 directory = '/path/to/your/directory/word-searcher/textfiles'
 ```
@@ -25,4 +26,5 @@ In above example this will be:
 
 ## Author
 
-* **Emil Brännström**(https://github.com/emilbrannstrom)
+* **Emil Brännström**
+https://github.com/emilbrannstrom
