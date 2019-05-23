@@ -1,47 +1,45 @@
-import os #OS module enables underlying OS capabilities
-from heapq import nlargest
+import os #Enable underlying OS capabilities
 
 #path to directory to scan for files
 directory = '/Users/emilbrannstrom/Documents/dev/word-searcher/textfiles'
 
-#list all files in directory
+#create list of all files in directory
 allFiles = os.listdir('textfiles/')
 
-#prompt for keywords and split them
+#prompt for keywords
 keywords = raw_input('Enter words to search for: ').split()
 
-#create empty dictionary for pairing textfiles with associated keyword count
-fileDictionary = {} 
+nrOfKeywords = len(keywords)
 
-#list to store matching words in
-matchingWords = [] 
+count = 0
+
+#create empty dictionary for pairing textfiles with number of keyword matches
+results = {} 
 
 #iterate through all textfiles in directory and search for keyword matches
 for file in allFiles:
     path = (directory + '/' + file)
     if file.endswith('.txt'):
-        with open (path, 'rt') as openFile: #rt = Read Text and close file  
-            for line in openFile:
-                for word in line.split():
-                    if word in keywords: #add any matching words to list
-                        matchingWords.append(word)
-                        fileDictionary[file] = len(matchingWords) #add number of matches to corresponding file in dictionary
+        with open(path, 'r') as openFile: #open and automatically close file
+            text = openFile.read().split() #read text and split into single words
+            uniqueWords = list(dict.fromkeys(text))
+            for word in keywords: #for each keyword, do the following:
+                if word in uniqueWords: #check if keyword matches any word in text
+                    count += 1
+                    results[file] = count #add number of matches to corresponding file in dictionary
 
-#remove duplicates from dictionary
-matchingWords = list(dict.fromkeys(matchingWords))
+print "number of keywords: \n",nrOfKeywords
 
-#get matching words ratio
-matchRatio = float(len(matchingWords))/len(keywords)*100
+for key, value in results.items():
+    results[key] = float(value)/float(nrOfKeywords) * 100
 
-print "Matches found: ", len(matchingWords)
-print "Match percentage: ", matchRatio, "%"
+#show top 10 matched files and corresponding match ratio
+print 'Matches found in: \n',results
 
-"""TODO: Fix match ratio for each textfile in the top 10 list."""
-
-print'Matches found in: ', file
-
-#list top 10 files where keywords match
-top10 = nlargest(10, fileDictionary, key=fileDictionary.get)
-if len(matchingWords) > 0:
-    print("Top 10 files matching your keywords:")
-    print top10
+"""
+TODO: 
+- Improve match ratio for each textfile.
+- Limit result to only show top 10.
+- Fix upper limit on counter.
+- Transform to lowercase.
+"""
