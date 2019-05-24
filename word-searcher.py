@@ -1,4 +1,5 @@
 import os #Enable underlying OS capabilities
+import operator #Enable a set of standard operators as functions
 
 #path to directory to scan for files
 directory = '/Users/emilbrannstrom/Documents/dev/word-searcher/textfiles'
@@ -28,20 +29,17 @@ for file in allFiles:
             for word in keywords: #for each keyword, do the following:
                 if word in uniqueWords: #check if keyword matches any word in text
                     keywordsInText.append(word)
-                    print(keywordsInText)
                     results[file] = len(keywordsInText) #add number of matches to corresponding file in dictionary
             keywordsInText = []
-print('number of keywords: \n',nrOfKeywords) 
 
 for key, value in results.items():
     results[key] = float(value)/float(nrOfKeywords) * 100
 
 #show top 10 matched files and corresponding match ratio
-print('Matches found in: \n',results)
+for key, value in results.items():
+    print(int(value),'% match in ',key)
 
 """
 TODO: 
-- Improve match ratio for each textfile. done
-- Limit result to only show top 10.
-- Transform to lowercase. done
+- Make list of result prettier.
 """
