@@ -7,7 +7,7 @@ directory = '/Users/emilbrannstrom/Documents/dev/word-searcher/textfiles'
 allFiles = os.listdir('textfiles/')
 
 #prompt for keywords
-keywords = raw_input('Enter words to search for: ').split()
+keywords = input('Enter words to search for: ').split()
 
 nrOfKeywords = len(keywords)
 
@@ -27,14 +27,14 @@ for file in allFiles:
                 if word in uniqueWords: #check if keyword matches any word in text
                     count += 1
                     results[file] = count #add number of matches to corresponding file in dictionary
-
-print "number of keywords: \n",nrOfKeywords
+                    
+print('number of keywords: \n',nrOfKeywords)
 
 for key, value in results.items():
     results[key] = float(value)/float(nrOfKeywords) * 100
 
 #show top 10 matched files and corresponding match ratio
-print 'Matches found in: \n',results
+print('Matches found in: \n',results)
 
 """
 TODO: 
