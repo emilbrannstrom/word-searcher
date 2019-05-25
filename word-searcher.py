@@ -1,5 +1,4 @@
 import os #Enable underlying OS capabilities
-from heapq import nlargest #Enable extraction of n greatest elements in dictionary
 
 #Path to directory to scan for files
 directory = '/Users/emilbrannstrom/Documents/dev/word-searcher/textfiles'
@@ -28,7 +27,7 @@ for file in allFiles:
                 if word in uniqueWords: #Check if keyword matches any word in text
                     keywordsInText.append(word)
                     results[file] = len(keywordsInText) #Add number of matches to corresponding file in dictionary
-            keywordsInText = []
+            keywordsInText = [] #Flush keywords
 
 for key, value in results.items():
     results[key] = float(value)/float(nrOfKeywords) * 100
