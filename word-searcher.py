@@ -1,10 +1,10 @@
 import os #Enable underlying OS capabilities
 from heapq import nlargest #Enable extraction of n greatest elements in dictionary
 
-#path to directory to scan for files
+#Path to directory to scan for files
 directory = '/Users/emilbrannstrom/Documents/dev/word-searcher/textfiles'
 
-#create list of all files in directory
+#Create list of all files in directory
 allFiles = os.listdir('textfiles/')
 
 #Prompt for keywords
@@ -15,17 +15,15 @@ nrOfKeywords = len(keywords)
 keywordsInText = []
 
 #Create empty dictionary for pairing textfiles with number of keyword matches
-
 results = {} 
 
-#iterate through all textfiles in directory and search for keyword matches
+#Iterate through all textfiles in directory and search for keyword matches
 for file in allFiles:
-    #fileList = []
     path = (directory + '/' + file)
     if file.endswith('.txt'):
         with open(path, 'rt') as openFile: #Open and automatically close file
             text = openFile.read().lower().split() #Read text and split into single words
-            uniqueWords = list(dict.fromkeys(text))
+            uniqueWords = list(dict.fromkeys(text)) #Remove duplicate words
             for word in keywords: #For each keyword, do the following:
                 if word in uniqueWords: #Check if keyword matches any word in text
                     keywordsInText.append(word)
