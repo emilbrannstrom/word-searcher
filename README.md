@@ -20,6 +20,11 @@ In above example this will be:
 /path/to/your/directory/word-searcher/
 ```
 
+### To-do
+
+- Limit output to show only top 10 results.
+- Show potential hits with 0 % in top 10 results.
+
 ## Author
 
 * **Emil Brännström**
