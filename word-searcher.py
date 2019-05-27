@@ -36,11 +36,15 @@ for key, value in results.items():
 sortedResults = dict(sorted(results.items(), key=lambda x: x[1], reverse=True)) 
 
 #Show matched files and corresponding match ratio
+counter = 0
 for key, value in sortedResults.items():
+    counter += 1
     print(int(value),'% match in ',key)
+    if counter > 9:
+        break
 
 """
 TODO: 
-- Limit output to show only top 10 results.
 - Show hits with 0 % in output.
 """
+
