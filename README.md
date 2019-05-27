@@ -19,11 +19,8 @@ In above example this will be:
 ```
 /path/to/your/directory/word-searcher/
 ```
+Run script by typing "python3 word-searcher.py"
 
-### To-do
-
-- Limit output to show only top 10 results.
-- Show potential hits with 0 % in top 10 results.
 
 ## Author
 
