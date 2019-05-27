@@ -3,17 +3,19 @@ import os #Enable underlying OS capabilities
 #Path to directory to scan for files
 directory = '/Users/emilbrannstrom/Documents/dev/word-searcher/textfiles'
 
-#Create list of all files in directory
+#List all files in directory
 allFiles = os.listdir('textfiles/')
 
 #Prompt for keywords
 keywords = input('Enter words to search for: ').lower().split()
 
+#Number of keywords is equivalent to the length of the user input list
 nrOfKeywords = len(keywords)
 
+#List for storing keywords found in text
 keywordsInText = []
 
-#Create empty dictionary for pairing textfiles with number of keyword matches
+#Dictionary for pairing textfiles with number of keyword matches
 results = {} 
 
 #Iterate through all textfiles in directory and search for keyword matches
@@ -29,6 +31,11 @@ for file in allFiles:
                     results[file] = len(keywordsInText) #Add number of matches to corresponding file in dictionary
             keywordsInText = [] #Flush keywords
 
+#Check if dictionary is empty
+if not results:
+    print('No matches found.')
+
+#Insert match percentage as value for corresponding keyword matches
 for key, value in results.items():
     results[key] = float(value)/float(nrOfKeywords) * 100
 
@@ -40,11 +47,5 @@ counter = 0
 for key, value in sortedResults.items():
     counter += 1
     print(int(value),'% match in ',key)
-    if counter > 9:
+    if counter >= 10: #Limit output to ten rows.
         break
-
-"""
-TODO: 
-- Show hits with 0 % in output.
-"""
-
