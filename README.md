@@ -1,5 +1,7 @@
-# word-searcher
-Terminal based search engine for finding words contained text files. Written in Python.
+# Word-searcher
+
+### Description
+Terminal based search engine for finding words contained text files. Written in Python 3.7.1.
 
 ### Prerequisites
 
